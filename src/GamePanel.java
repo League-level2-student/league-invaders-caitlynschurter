@@ -1,17 +1,13 @@
+
+//Evil Lily's password: JesusChrist123!
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener {
 	Timer timer;
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("what the frikity frak is mayonaise?");
-	}
 
 	public GamePanel() {
 		timer = new Timer(1000 / 60, this);
@@ -21,4 +17,14 @@ public class GamePanel extends JPanel implements ActionListener {
 		timer.start();
 	}
 
+	@Override
+	public void paintComponent(Graphics g) {
+		g.fillRect(10, 10, 100, 100);
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		repaint();
+	}
 }
