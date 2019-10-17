@@ -1,3 +1,4 @@
+
 //Evil Lily's password: JesusChrist123!
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class LeagueInvaders {
 
 	void setup() {
 		frame.add(gamePanel);
+		frame.addKeyListener(gamePanel);
 		frame.getContentPane().setPreferredSize(new Dimension(width, height));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
