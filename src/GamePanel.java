@@ -1,6 +1,7 @@
 
 //Evil Lily's password: JesusChrist123!
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,9 +16,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
+	int kills;
+	Font titleFont;
+	Font titleFontEnter;
+	Font titleFontSpace;
+	
+	Font gameOverFont;
+	Font gameOverFontKills;
+	Font gameOverFontRestart;
 
 	public GamePanel() {
 		timer = new Timer(1000 / 60, this);
+		titleFont = new Font("Arial", Font.PLAIN, 48);
+		titleFontEnter = new Font("Arial", Font.PLAIN, 36);
+		titleFontSpace = new Font("Arial", Font.PLAIN, 36);
+		
+		gameOverFont = new Font("Arial", Font.BOLD, 48);
+		gameOverFontKills= new Font("Arial", Font.PLAIN, 36);
 	}
 
 	void startGame() {
@@ -39,6 +54,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawMenuState(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.setColor(Color.WHITE);
+		g.setFont(titleFont);
+		g.drawString("League Invaders!", 75, 150);
+		g.setFont(titleFontEnter);
+		g.drawString("Press ENTER to Start", 75, 400);
+		g.setFont(titleFontSpace);
+		g.drawString("Press SPACE for Instructions", 25, 500);
 	}
 
 	void drawGameState(Graphics g) {
@@ -47,8 +69,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	void drawEndState(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.PINK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+		g.setColor(Color.BLACK);
+		g.setFont(gameOverFont);
+		g.drawString("Game Over", 120, 150);
+		g.setFont(gameOverFontKills);
+		g.drawString("You Murdered " + kills + " Enemies", 60, 200);
+		g.setFont(gameOverFontRestart);
+		g.drawString("Press ENTER to start again!", 30, 500);
 	}
 
 	@Override
