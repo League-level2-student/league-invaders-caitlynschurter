@@ -16,12 +16,10 @@ public class GameObject {
 	}
 
 	public void update() {
-		// move the object around
-		_x++;
-		_y++;
+		
 	}
 
 	public void draw(Graphics g) {
-		g.fillRect(_x, _y, _width, _height);
+		
 	}
 }
