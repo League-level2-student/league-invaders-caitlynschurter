@@ -7,6 +7,8 @@ public class GameObject {
 	int _y;
 	int _width;
 	int _height;
+	
+	boolean isAlive;
 
 	GameObject(int x, int y, int width, int height) {
 		_x = x;
