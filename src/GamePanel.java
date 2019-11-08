@@ -159,6 +159,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// System.out.println("Hi");
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			manager.addProjectile(new Projectile(rocketShip._x+rocketShip._width/2, rocketShip._y, 10, 10));
+			//Fix bullet placement
+		}
 
 	}
 
