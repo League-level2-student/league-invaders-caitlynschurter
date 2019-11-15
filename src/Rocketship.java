@@ -7,11 +7,11 @@ public class Rocketship extends GameObject {
 
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		speed = 5;
+		speed = 8;
 	}
 
 	public void update() {
-
+		super.update();
 	}
 
 	public void draw(Graphics g) {

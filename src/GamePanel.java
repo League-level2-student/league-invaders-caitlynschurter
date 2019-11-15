@@ -53,6 +53,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void updateGameState() {
 		manager.update();
+		manager.manageEnemies();
+		//stage 12 step 9
+		manager.checkCollision();
+		manager.purgeObjects();
 	}
 
 	void updateEndState() {
@@ -89,6 +93,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press ENTER to start again!", 30, 500);
 	}
 
+	
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		switch (currentState) {
@@ -160,8 +166,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// System.out.println("Hi");
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			manager.addProjectile(new Projectile(rocketShip._x+rocketShip._width/2, rocketShip._y, 10, 10));
-			//Fix bullet placement
+			manager.addProjectile(new Projectile(rocketShip._x+rocketShip._width/2-5, rocketShip._y, 10, 10));
+			
 		}
 
 	}
