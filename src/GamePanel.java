@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font gameOverFontRestart;
 
 	Rocketship rocketShip;
-	
+
 	ObjectManager manager;
 
 	public GamePanel() {
@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		gameOverFontKills = new Font("Arial", Font.PLAIN, 36);
 
 		rocketShip = new Rocketship(250, 700, 50, 50);
-		
+
 		manager = new ObjectManager(rocketShip);
 	}
 
@@ -56,8 +56,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		manager.manageEnemies();
 		manager.checkCollision();
 		manager.purgeObjects();
-		
-		if(rocketShip.isAlive == false) {
+
+		if (rocketShip.isAlive == false) {
 			currentState = END_STATE;
 		}
 	}
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void drawGameState(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
-		manager.draw(g);	
+		manager.draw(g);
 	}
 
 	void drawEndState(Graphics g) {
@@ -96,8 +96,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press ENTER to start again!", 30, 500);
 	}
 
-	
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		switch (currentState) {
@@ -141,10 +139,19 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// System.out.println("hi");
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState++;
-			if (currentState > END_STATE) {
-				currentState = MENU_STATE;
+
+			if (currentState == END_STATE) {
+				rocketShip = new Rocketship(250, 700, 50, 50);
+				System.out.println("hello");
+				manager = new ObjectManager(rocketShip);
 			}
+
+			currentState++;
+
+		}
+
+		if (currentState > END_STATE) {
+			currentState = MENU_STATE;
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -168,9 +175,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// System.out.println("Hi");
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			manager.addProjectile(new Projectile(rocketShip._x+rocketShip._width/2-5, rocketShip._y, 10, 10));
-			
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			manager.addProjectile(new Projectile(rocketShip._x + rocketShip._width / 2 - 5, rocketShip._y, 10, 10));
+
 		}
 
 	}
