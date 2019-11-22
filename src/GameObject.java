@@ -19,6 +19,8 @@ public class GameObject {
 		_height = height;
 
 		collisionBox = new Rectangle(_x, _y, _width, _height);
+		
+		isAlive = true;
 	}
 
 	public void update() {

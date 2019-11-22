@@ -1,3 +1,5 @@
+
+//Evil Lily's password is JesusChrist123!
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +12,8 @@ public class ObjectManager {
 
 	long enemyTimer;
 	int enemySpawnTime;
+	
+	int score;
 
 	public ObjectManager(Rocketship rocketship) {
 		_rocketship = rocketship;
@@ -17,8 +21,19 @@ public class ObjectManager {
 		aliens = new ArrayList<Alien>();
 
 		enemyTimer = 0;
-		enemySpawnTime = 1000;
+		enemySpawnTime = 2000;
+		
+		score = 0;
 	}
+	
+	public int getScore() {
+		return this.score;
+	}
+	
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
 
 	void update() {
 		_rocketship.update();
@@ -35,11 +50,12 @@ public class ObjectManager {
 		_rocketship.draw(g);
 		for (Projectile p : projectiles) {
 			p.draw(g);
-
-			for (Alien a : aliens) {
-				a.draw(g);
-			}
 		}
+
+		for (Alien a : aliens) {
+			a.draw(g);
+		}
+
 	}
 
 	void addProjectile(Projectile bullet) {
@@ -54,7 +70,7 @@ public class ObjectManager {
 	public void manageEnemies() {
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			addAlien(new Alien(new Random().nextInt(LeagueInvaders.width), 0, 50, 50));
-
+			// System.out.println("hi");
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
@@ -65,17 +81,28 @@ public class ObjectManager {
 				aliens.remove(i);
 			}
 		}
+		for (int i = projectiles.size() - 1; i >= 0; i--) {
+			if (!projectiles.get(i).isAlive) {
+				projectiles.remove(i);
+			}
+		}
 	}
 
 	void checkCollision() {
 		for (Alien a : aliens) {
-
 			if (_rocketship.collisionBox.intersects(a.collisionBox)) {
-
 				_rocketship.isAlive = false;
-
 			}
-
+		}
+		for (Projectile p : projectiles) {
+			for (Alien a : aliens) {
+				if (a.collisionBox.intersects(p.collisionBox)) {
+					a.isAlive = false;
+					p.isAlive = false;
+					score++;
+					
+				}
+			}
 		}
 
 	}
