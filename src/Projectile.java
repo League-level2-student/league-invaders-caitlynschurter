@@ -20,8 +20,7 @@ public class Projectile extends GameObject {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.CYAN);
-		g.fillRect(_x, _y, _width, _height);
+		g.drawImage(GamePanel.bulletImg, _x, _y, _width, _height, null);
 	}
 	
 }
